@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
-Debug|Win32|E:\Visual Studio 2015\Projects\c++\Karaokecdg\|
+PlatformToolSet=v143:VCToolArchitecture=Native32Bit:VCToolsVersion=14.31.31103:TargetPlatformVersion=10.0.19041.0:
+Debug|Win32|C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\|

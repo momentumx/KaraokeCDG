@@ -8,14 +8,58 @@ int main(int argc, char**argv)
 	_CrtSetBreakAlloc(-1);
 
 	//RESIZE SCREEN SIZE TO KARAOKE SIZE
-	Console::SetBufferSize(50, 18);
-	Console::SetWindowSize(50, 18);
-	string fileName = "Karaoke tracks/";
+	Console::SetBufferSize(170, 50);
+	Console::SetWindowSize(170, 50);
+	string fileName = "../../Karaokecdg/Karaoke tracks/";
 
 	streampos size;
-	char* unparsedLyrics;
+	char* unparsedLyrics = new char[30];
+	while (true)
+	{
+		cout << "For help, enter 'h'. To start, enter 's'.\n";//. To change the opening, enter 'o'
+		try
+		{
+			cin >> unparsedLyrics;
+			if (unparsedLyrics[0] == 'h' || unparsedLyrics[0] == 'H') {
+				cout << "Step 1: Find the lyrics to the song you want to make a cdg for.\n";
+				cout << "Step 2: Find a version for that song that already has the vocals removed in .mp3 format.\n";
+				cout << "Step 3: Copy and paste the lyrics into the file called 'Lyrics.txt' inside the folder named 'Karaoke tracks'.\n";
+				cout << "Step 4: Make a folder named the same as the song inside of the folder 'Karaoke tracks'.\n There are Examples in that folder already\n";
+				cout << "Step 5: Put the song from step 2 in the folder you made in step 4 (they should have the same name).\n";
+				cout << "Step 6: Format the lyrics:.\n";
+				cout << "Step 6a: Each line in the lyrics.txt file will be the same in the cdg, but\n\tCDG files do not allow more than 42 characters (including spaces).\n\tEnsure each line has <= 42 characters.\n\tIf a line is longer than 42, it will wrap, putting the rest of the line on a new line.\n";
+				cout << "Step 6b: If there is a hard pause in the song insert a '_' at that lyric.\n";
+				cout << "Step 6c: If the song has multiple singers, start the line with a '@' to change singer.\n";
+				cout << "Step 6d: Start the line with a '*' if both singers sing at the same time.\n";
+				cout << "Step 6e: All other special characters are ignored.\n";
+				cout << "Step 7: Start the .exe.\n";
+				cout << "Step 8: Press enter to start.\n";
+				cout << "Step 9: Enter the name of the song (exactly the same name as step 4).\n";
+				cout << "Step 10: Enter the milliseconds of the song (sorry to make you do some math).\n\tEven a little bit off will ruin the beat of the song.\n";
+				cout << "Step 11: The song will start to play with the lyrics on the screen.\n\tPress Spacebar at the beginning of each word when they would play in the song.\n";
+				cout << "Step 12: At the end of the song, the cdg file will be made in the folder you created in step 4. Open it in a cdg player to see your work!\n";
+				cout << "Step 13: If the song is off, repeat steps 8-12. You may of entered wrong milliseconds, or timed your presses incorrectly.\n\t Also ensure the formatting is correct form step 6.\n";
+				cout << "Step 14: Any questions, text me at (407) 715-4503.\n\n";
+			}
+			else if (unparsedLyrics[0] == 'o' || unparsedLyrics[0] == 'O')
+			{
+				// add opening
+			}
+			else
+			{
+				break;
+			}
+		}
+		catch (const std::exception&)
+		{
+			cout << "unrecognized input\n";
+		}
+	}
+	cout << unparsedLyrics;
+	delete[] unparsedLyrics;
 	int i = -1;
 	int j = -1;
+	Console::Clear();
 
 	//////////////////////
 	// parse text
@@ -24,7 +68,7 @@ int main(int argc, char**argv)
 		vector<char> parsedYlrics;
 		Line line;
 		//ifstream file(argv[1], ios::in | ios::binary | ios::ate);
-		ifstream file("Karaoke tracks/Lyrics.txt", ios::in | ios::binary | ios::ate);
+		ifstream file(fileName + "Lyrics.txt", ios::in | ios::binary | ios::ate);
 		if (file.is_open())
 		{
 			
@@ -34,27 +78,9 @@ int main(int argc, char**argv)
 			unparsedLyrics = new char[size];
 			file.read(unparsedLyrics, size);
 			file.close();
-			bool found = false;
 			char* name = new char[255];
 			while (++i != size)//for every charcter
 			{
-				if (!found)
-				{
-
-					if (unparsedLyrics[i] == '\r')
-					{
-						found = true;
-						name[i] = 0;
-						fileName += name;
-						fileName += '/';
-						fileName += name;
-						++i;
-						delete[] name;
-						continue;
-					}
-					name[i]= unparsedLyrics[i];
-					continue;
-				}
 				char let = unparsedLyrics[i];
 				//if we recognize the symbol
 				if (let == '^' || let == ' ' || let == '@' || let == '*' || let == '_' || let == '\n' || ((let > 64 && let < 91) || (let > 96 && let < 123))) {
@@ -124,43 +150,72 @@ int main(int argc, char**argv)
 		}
 		//the last line never actually gets pushd into song so do it here.
 		line.CenterLine(Song);
-		Console::SetCursorPosition(Song[0].words[0].x, ROW_START);
 	}
 
 	////////////////
-	//draw first page
+	// get info, and start the timer
 	////////////////
-	i = -1; while (++i != NUMBER_OF_ROWS)
+	//int songMillis;
+	float songPackets;
 	{
-		Console::ForegroundColor(Song[i].color);
-		j = -1; while (++j != Song[i].words.size())
+		wchar_t songname[400] = { 0 };
+		string name;
+		cout << "Enter name of song (e.g. Green Day - When I Come Around)\n";
+		while (true)
 		{
-			Console::SetCursorPosition(Song[i].words[j].x, ROW_START + 2 * i);
-			//if its a hard space than insert white
-			if (Song[i].words[j].word[0] == '_') {
-				Console::BackgroundColor(White);
-				cout << ' ';
-				Console::BackgroundColor(Black);
+			std::getline(std::cin >> std::ws, name);
+			fileName = fileName + name + '/' + name;
+			name = fileName + ".mp3";
+			ifstream f(name.c_str());
+			if(f.good())
+			{
+				string temp = "open \"\" type mpegvideo alias mp3";
+				i = name.size(); while (--i != -1)
+				{
+					temp.insert(6, 1, name[i]);
+				}
+				i = -1; while (++i != temp.size())
+				{
+					songname[i] = temp[i];
+				}
+				break;
 			}
 			else
-				cout << Song[i].words[j].word;
+			{
+				cout << "No file found with that name: " + fileName + '\n';
+				fileName = "Karaoke tracks/";
+			}
+			
 		}
-	}
-
-	////////////////
-	// start the timer
-	////////////////
-	{
-		string name = fileName + ".mp3";
-		string temp = "open \"\" type mpegvideo alias mp3";
-		wchar_t songname[400] = {0};
-		i = name.size(); while (--i!=-1)
+		cout << "Enter milliseconds of song (1 min = 60 sec, 1 sec = 1000 milliseconds)\n";
+		string num;
+		cin >> num;
+		cout << num;
+		int songMillis = std::stoi(num);
+		songPackets = ((float)songMillis) / 3.3333333f;
+		slope = songPackets / songMillis;
+		////////////////
+		//draw first page
+		////////////////
+		Console::Clear();
+		Console::SetBufferSize(50, 18);
+		Console::SetWindowSize(50, 18);
+		Console::SetCursorPosition(Song[0].words[0].x, ROW_START);
+		i = -1; while (++i != NUMBER_OF_ROWS)
 		{
-			temp.insert(6, 1, name[i]);
-		}
-		i = -1; while (++i!=temp.size())
-		{
-			songname[i] = temp[i];
+			Console::ForegroundColor(Song[i].color);
+			j = -1; while (++j != Song[i].words.size())
+			{
+				Console::SetCursorPosition(Song[i].words[j].x, ROW_START + 2 * i);
+				//if its a hard space than insert white
+				if (Song[i].words[j].word[0] == '_') {
+					Console::BackgroundColor(White);
+					cout << ' ';
+					Console::BackgroundColor(Black);
+				}
+				else
+					cout << Song[i].words[j].word;
+			}
 		}
 		mciSendString(songname, NULL, 0, NULL);
 		mciSendString(L"play mp3", NULL, 0, NULL);
@@ -169,6 +224,8 @@ int main(int argc, char**argv)
 	}
 	//the first 2 lines are special cases
 	{
+		if(GetAsyncKeyState(VK_SPACE) & 1)
+			Console::ForegroundColor(Blue);//over color
 		Word* lastWord = nullptr;
 		j = -1; while (++j != 2) {
 			i = 0; while (i != Song[j].words.size()) {
@@ -232,6 +289,7 @@ int main(int argc, char**argv)
 		}
 		lastWord->speed = LAST_WORD_LENGTH;
 	}
+	Console::Clear();
 	cout << '\n' << "Creating File";
 
 	/////////////
@@ -239,7 +297,7 @@ int main(int argc, char**argv)
 	/////////////
 	Packet packet;
 	vector<Packet> packets;
-	packets.resize(SONG_PACKETS+2000);
+	packets.resize(songPackets + 2000);
 	string name = fileName + ".cdg";
 	ofstream fileOut(name, ios::out | ios::binary);
 
@@ -366,7 +424,7 @@ int main(int argc, char**argv)
 		}
 
 		//print out everything except for the beggining which we already printed out
-		i = size / PACKET_SIZE - 1; while (++i != round( SONG_PACKETS + 2000))
+		i = size / PACKET_SIZE - 1; while (++i != floor(songPackets + 1999))
 			packets[i].printOut(fileOut);
 
 		fileOut.close();

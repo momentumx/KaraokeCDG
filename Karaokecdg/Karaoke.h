@@ -51,8 +51,8 @@ using namespace System;
 
 #define EMPTY "                                                "
 
-#define SONG_MILLSEC 182428.0f
-#define SONG_PACKETS 54728.4f
+//#define SONG_MILLSEC 182428.0f
+//#define SONG_PACKETS 54728.4f
 
 #define ROW_START 4
 #define NUMBER_OF_ROWS 5
@@ -213,13 +213,13 @@ char FILL[12] = { 0,30,30,30,30,30,30,30,30,30,30,0 };
 char EMPTY12[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 char HALF_FILL1[12] = { 56,56,56,56,56,56,56,56,56,56,56,56 };
 char HALF_FILL2[12] = { 7,7,7,7,7,7,7,7,7,7,7,7 };
-float slope = SONG_PACKETS / SONG_MILLSEC;
+static float slope;
 clock_t beginTime = 0;
 
 void RemoveEmptySpace() {
 
 	char* reader;
-	ifstream file("E:/downloads/BeginningCrown.cdg", ios::in | ios::binary);
+	ifstream file("Karaoke tracks/BeginningCrown.cdg", ios::in | ios::binary);
 	if (file.is_open())
 	{
 		vector<Packet> packeeee;
@@ -227,7 +227,7 @@ void RemoveEmptySpace() {
 		reader = new char[ONE_SEC_OF_PACKETS_IN_BYTES];
 		file.read(reader, ONE_SEC_OF_PACKETS_IN_BYTES);
 
-		ofstream fileOut("E:/downloads/BeginningCrownReg.cdg", ios::out | ios::binary);
+		ofstream fileOut("Karaoke tracks/BeginningCrownReg.cdg", ios::out | ios::binary);
 
 		if (fileOut.is_open())
 		{
@@ -278,7 +278,7 @@ void SetETC(char _x, vector<Packet>& _packets, unsigned& _index) {
 
 bool DrawETC(char _x, vector<Packet>& _packets, unsigned& _index, unsigned _indexOfSong) {
    	if (_index > Song[_indexOfSong].words[0].startTime) {
-		cout << "\nNeed more start time\nReturning";
+		cout << "\nNeed more start time. Need at least 3 sec before first press\nEither try again, or add empty space with an mp3 editor.\n";
 		return false;
 	}
 	float speed = (Song[_indexOfSong].words[0].startTime - _index) / 4;
@@ -309,7 +309,7 @@ bool DrawBreak(char _x, vector<Packet>& _packets, unsigned& _index, unsigned _in
 	streampos size;
 	char* reader;
 
-	ifstream file("E:/downloads/DrinkBreak.cdg", ios::in | ios::binary | ios::ate);
+	ifstream file("Karaoke tracks/DrinkBreak.cdg", ios::in | ios::binary | ios::ate);
 	if (file.is_open())
 	{
 		size = file.tellg();

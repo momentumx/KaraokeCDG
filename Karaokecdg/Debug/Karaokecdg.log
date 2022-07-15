@@ -1,21 +1,20 @@
-﻿  Source.cpp
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(137): warning C4244: 'initializing': conversion from 'float' to 'char', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(141): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(153): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(158): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(258): warning C4244: 'return': conversion from 'float' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(284): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(292): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(295): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(298): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(305): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\karaoke.h(317): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\source.cpp(34): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\source.cpp(242): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\source.cpp(257): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\source.cpp(264): warning C4244: '=': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
-e:\visual studio 2015\projects\c++\karaokecdg\karaokecdg\source.cpp(369): warning C4244: '=': conversion from 'std::streamoff' to 'int', possible loss of data
+﻿  Console.cpp
+  Source.cpp
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(137,14): warning C4244: 'initializing': conversion from 'float' to 'char', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(141,37): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(153,39): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(158,39): warning C4267: '+=': conversion from 'size_t' to 'char', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(258,14): warning C4244: 'return': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(284,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(292,12): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(295,12): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(298,12): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(305,15): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Karaoke.h(317,21): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Source.cpp(78,30): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Source.cpp(300,29): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Source.cpp(315,30): warning C4244: 'initializing': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Source.cpp(322,17): warning C4244: '=': conversion from 'std::streamoff' to 'unsigned int', possible loss of data
+C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Karaokecdg\Source.cpp(427,26): warning C4244: '=': conversion from 'std::streamoff' to 'int', possible loss of data
   Generating Code...
-  Skipping... (no relevant changes detected)
-  Console.cpp
-  Karaokecdg.vcxproj -> E:\Visual Studio 2015\Projects\c++\Karaokecdg\Debug\Karaokecdg.exe
+  Karaokecdg.vcxproj -> C:\Users\laptop\Documents\Visual Studio 2017\Projects\c++\Karaokecdg\Debug\Karaokecdg.exe
